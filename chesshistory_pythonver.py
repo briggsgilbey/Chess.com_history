@@ -1,12 +1,8 @@
-#GOALS
-#Collect all of my game data (Partially done, API issues when asking for all games)
+#Goals
+#Collect all of my game data (Done)
 #Sort the games for my colour piece to list my colour piece and my elo (Done)
-#Sort data into tables (not started)
-#Plot elo data as a graph, using my game number/ date as the y axis.
-
-#Error in data copying certain results many times
-#other results do not have any data except date and "<class numpy string>"
-#
+#Sort data into tables (Done)
+#Plot elo data as a graph, using my game number/ date as the y axis (Done).
 
 
 
@@ -25,22 +21,13 @@ import re
 me = "https://api.chess.com/pub/player/bigbadbege"
 allgames = "https://api.chess.com/pub/player/bigbadbege/games/live/600/0"
 url = "https://api.chess.com/pub/player/bigbadbege/games/2025/03"
-headers = {'User-Agent':'bigbadbege'}
-username = "bigbadbege"
+headers = {'User-Agent':'header'}
+username = input("Please enter your chess.com username")
 df = pd.DataFrame()
 i = 0
-'''
-archive_list = "https://api.chess.com/pub/player/bigbadbege/games/archives"
-response = requests.get(url=archive_list, headers=headers)
-data = response.json()
-response2 = requests.get(url=data["archives"][52], headers=headers)
-data2 = response2.json()
-games = data2["games"]
-print(games)
 
-'''
 def month_and_year_data(df, i):
-    archive_list = "https://api.chess.com/pub/player/bigbadbege/games/archives"
+    archive_list = "https://api.chess.com/pub/player/" + username + "/games/archives"
     retrieve_data(df, i, archive_list)
 
 
@@ -176,7 +163,7 @@ def export_data(df):
    
 
 
-    #results_by_month(df)
+   
 
 #next, plot data using matplotlib
 def plot_elo(df):
@@ -190,11 +177,7 @@ def plot_elo(df):
     quit()
 
 month_and_year_data(df, i)
-'''
-def results_by_month (df):
-    df["date"] = pd.to_datetime(df["date"])
-    df["month"] = pd.DatetimeIndex(df["date"]).month
-    print(df)
+
 '''
 
 
